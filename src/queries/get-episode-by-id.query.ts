@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
 const GET_EPISODE_BY_ID = gql`
-  query GetLocationById($id: ID!) {
-    location(id: $id) {
+  query GetEpisodeById($id: ID!) {
+    episode(id: $id) {
       id
       name
-      type
-      dimension
-      residents {
+      air_date
+      episode
+      characters {
         id
         name
         species

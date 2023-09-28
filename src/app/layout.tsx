@@ -1,22 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloWrapper } from "@/components/ApolloWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
-
-const client = new ApolloClient({
-  uri: "https://rickandmortyapi.com/graphql",
-  cache: new InMemoryCache(),
-  name: process.env.PROJECT_NAME,
-  version: process.env.PROJECT_VERSION
-});
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,12 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ApolloProvider client={client}>
-          {children}
-        </ApolloProvider>
-      </body>
-    </html>
+    <ApolloWrapper>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </ApolloWrapper>
   );
 }
