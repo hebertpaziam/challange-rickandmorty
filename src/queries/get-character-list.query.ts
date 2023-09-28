@@ -13,6 +13,7 @@ const GET_CHARACTER_LIST = gql`
         id
         name
         species
+        gender
         status
       }
     }

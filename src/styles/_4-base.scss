@@ -19,13 +19,14 @@ footer {
   position: relative;
   display: flex;
   flex-direction: column;
-  place-items: center;
+  align-items: stretch;
   place-content: flex-start;
   width: 100%;
+  height: auto;
 }
 
 main {
-  padding: 1rem;
+  padding: 3rem;
 }
 
 section {

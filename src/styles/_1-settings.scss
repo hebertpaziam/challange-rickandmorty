@@ -1,6 +1,7 @@
 :root {
   --neutral-color-100: #ffffff;
-  --neutral-color-90: #e8ebef;
+  --neutral-color-90: #f2f2f2;
+  --neutral-color-80: #e8ebef;
   --neutral-color-60: #8f9db3;
   --neutral-color-50: #374151;
 
@@ -21,3 +22,26 @@
 
   --mobile-breakpoint: 768px;
 }
+
+$neutral-color-100: var(--neutral-color-100);
+$neutral-color-90: var(--neutral-color-90);
+$neutral-color-80: var(--neutral-color-80);
+$neutral-color-60: var(--neutral-color-60);
+$neutral-color-50: var(--neutral-color-50);
+
+$primary-color-90: var(--primary-color-90);
+$primary-color-50: var(--primary-color-50);
+$primary-color-30: var(--primary-color-30);
+$primary-color-10: var(--primary-color-10);
+
+$secondary-color-90: var(--secondary-color-90);
+$secondary-color-50: var(--secondary-color-50);
+$secondary-color-30: var(--secondary-color-30);
+$secondary-color-10: var(--secondary-color-10);
+
+$success-color-50: var(--success-color-50);
+$info-color-50: var(--info-color-50);
+$warning-color-50: var(--warning-color-50);
+$danger-color-50: var(--danger-color-50);
+
+$mobile-breakpoint: var(--mobile-breakpoint);

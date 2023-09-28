@@ -1,6 +1,7 @@
 import { IInfo } from "./info.interface";
 
-export interface IList<T> {
+export interface IList {
   info: IInfo;
-  results: Array<T>
+  results: Array<any>;
+  columns?: Array<{ key: string; label: string }>;
 }

@@ -9,7 +9,7 @@ const client = new ApolloClient({
   version: process.env.npm_package_version,
 });
 
-export interface ApolloWrapperProps extends PropsWithChildren {}
+export type ApolloWrapperProps = PropsWithChildren & {}
 
 export function ApolloWrapper({ children }: ApolloWrapperProps) {
   return <ApolloProvider client={client}>{children}</ApolloProvider>;

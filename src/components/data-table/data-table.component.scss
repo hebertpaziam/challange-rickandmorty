@@ -1,0 +1,28 @@
+@import "@/styles/1-settings";
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid $neutral-color-60;
+  border-radius: 4px;
+
+  th,
+  td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  tbody tr {
+    cursor: pointer;
+    &:nth-child(odd) {
+      background-color: $neutral-color-90;
+    }
+
+    &:hover {
+      background-color: $primary-color-90;
+    }
+
+    transition: all 100ms linear;
+  }
+}

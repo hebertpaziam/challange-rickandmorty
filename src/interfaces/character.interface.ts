@@ -1,4 +1,6 @@
-import { CharacterGenderEnum, CharacterStatusEnum } from "@/enums";
+import { CharacterGenderEnum } from "@/enums/character-gender.enum";
+import { CharacterStatusEnum } from "@/enums/character-status.enum";
+
 import { ILocation } from "./location.interface";
 import { IEpisode } from "./episode.interface";
 
