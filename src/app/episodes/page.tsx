@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_EPISODE_LIST } from "@/queries";
 
