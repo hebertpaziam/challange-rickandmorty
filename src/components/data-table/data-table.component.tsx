@@ -1,47 +1,57 @@
 import "./data-table.component.scss";
-import React, { useEffect, useState } from "react";
 
+import Link from "next/link";
 import { IList } from "@/interfaces/list.interface";
 
-export type DataTableProps<T> = { data: IList };
+export type DataTableProps<T> = { data: IList; onTableDataChange: Function };
 
-export function DataTable({ data }: DataTableProps<any>) {
-  const [tableData, setTableData] = useState<IList>();
+export function DataTable({ data, onTableDataChange }: DataTableProps<any>) {
+  let debouncingTimeout: NodeJS.Timeout;
+  const updateFilter = (colKey: string, term: string) => {
+    clearTimeout(debouncingTimeout);
+    debouncingTimeout = setTimeout(() => {
+      const filter = data?.info?.filter || {};
 
-  const handleClick = (item: any) => {
-    alert(JSON.stringify(item));
+      if (term) {
+        filter[colKey] = term;
+      } else {
+        delete filter[colKey];
+      }
+
+      onTableDataChange({ ...data, info: { ...data.info, filter } });
+    }, 1000);
   };
-
-  useEffect(() => {
-    if (data) {
-      const updatedData = {
-        ...data,
-        info: {
-          ...data.info,
-          current: (data.info.prev ?? 0) + 1,
-        },
-      };
-
-      setTableData(updatedData);
-    }
-  }, [data]);
 
   return (
     <>
-      {!!tableData && (
+      {!!data?.results && (
         <table>
           <thead>
             <tr>
-              {tableData?.columns?.map((col) => (
-                <th key={col.key}>{col.label}</th>
+              {data?.columns?.map((col) => (
+                <th key={col.key}>
+                  <span>{col.label}</span>
+                  <input
+                    className="field"
+                    type="text"
+                    disabled={!col.searchable}
+                    name={col.key}
+                    onChange={(e) => updateFilter(col.key, e.target.value)}
+                    id={`${col.key}-input`}
+                  />
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {tableData.results.map((item) => (
-              <tr key={item.id} onClick={()=> handleClick(item)}>
-                {tableData?.columns?.map((col) => (
-                  <td key={col.key}>{item[col.key]}</td>
+            {data.results.map((item) => (
+              <tr key={item.id}>
+                {data?.columns?.map((col) => (
+                  <td key={col.key}>
+                    <Link href={`${data.entity}/${item.id}`}>
+                      {item[col.key]}
+                    </Link>
+                  </td>
                 ))}
               </tr>
             ))}

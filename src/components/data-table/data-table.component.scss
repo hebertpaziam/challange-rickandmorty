@@ -10,11 +10,10 @@ table {
   th,
   td {
     text-align: left;
-    padding: 16px;
+    padding: 1rem .5rem;
   }
 
   tbody tr {
-    cursor: pointer;
     &:nth-child(odd) {
       background-color: $neutral-color-90;
     }
@@ -24,5 +23,19 @@ table {
     }
 
     transition: all 100ms linear;
+  }
+
+  .field{
+    display: block;
+    max-width: 120px;
+    padding: .25rem 1rem;
+    border: 1px solid $secondary-color-90;
+    border-radius: 4px;
+
+    &:disabled{
+      cursor: not-allowed;
+      background-color: $neutral-color-90;
+      border-color: $neutral-color-80;
+    }
   }
 }

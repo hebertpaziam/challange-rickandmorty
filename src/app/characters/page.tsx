@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CHARACTER_LIST } from "@/queries";
 
@@ -7,24 +8,63 @@ import { Loading } from "@/components/loading";
 import { IList } from "@/interfaces/list.interface";
 
 export default function CharacterListPage() {
-  const { loading, error, data } = useQuery(GET_CHARACTER_LIST, {
-    variables: { page: 1, filter: {} },
+  const [tableData, setTableData] = useState<IList>({
+    info: {
+      current: 1,
+      filter: {},
+    },
+    entity: "characters",
+    columns: [
+      { key: "id", label: "ID", searchable: false },
+      { key: "name", label: "Name", searchable: true },
+      { key: "species", label: "Species", searchable: true },
+      { key: "gender", label: "Gender", searchable: true },
+      { key: "status", label: "Status", searchable: true },
+    ],
+  } as IList);
+
+  const { loading, error, data, refetch } = useQuery(GET_CHARACTER_LIST, {
+    variables: {
+      page: tableData?.info?.current || 1,
+      filter: tableData?.info?.filter || {},
+    },
   });
 
-  const columnsData: Partial<IList> = {
-    columns: [
-      { key: "id", label: "ID" },
-      { key: "name", label: "Name" },
-      { key: "species", label: "Species" },
-      { key: "gender", label: "Gender" },
-      { key: "status", label: "Status" },
-    ],
+  const handleTableDataChange = (updates: IList) => {
+    setTableData(updates);
+    refetch({
+      page: updates?.info?.current || 1,
+      filter: updates?.info?.filter || {},
+    });
   };
+
+  useEffect(() => {
+    if (
+      data?.characters.results?.length &&
+      data.characters.results !== tableData.results
+    ) {
+      const updatedData = {
+        info: {
+          ...data.characters?.info,
+          filter: tableData.info.filter,
+          current:
+            tableData.info?.current || (data.characters.info?.prev ?? 0) + 1,
+        },
+        columns: tableData.columns,
+        entity: tableData.entity,
+        results: data.characters?.results,
+      };
+
+      setTableData(updatedData);
+    }
+  }, [data, tableData, refetch]);
 
   return (
     <div>
       {loading && <Loading />}
-      {!!data && <DataTable data={{ ...columnsData, ...data.characters }} />}
+      {!!data && (
+        <DataTable data={tableData} onTableDataChange={handleTableDataChange} />
+      )}
     </div>
   );
 }

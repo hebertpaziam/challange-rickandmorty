@@ -3,5 +3,11 @@ import { IInfo } from "./info.interface";
 export interface IList {
   info: IInfo;
   results: Array<any>;
-  columns?: Array<{ key: string; label: string }>;
+  entity?: string;
+  columns?: Array<{
+    key: string;
+    searchable: boolean;
+    label: string;
+    entity: string;
+  }>;
 }

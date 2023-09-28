@@ -1,7 +1,8 @@
 export interface IInfo {
   count: number;
-  pages: number;
   current: number;
+  filter?: Record<string, any>;
   next?: number;
+  pages: number;
   prev?: number;
 }
