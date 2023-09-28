@@ -1,0 +1,18 @@
+@import "~normalize.css";
+
+* {
+  color: var(--neutral-color-50);
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Inter", "OpenSans", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+
+  &,
+  &::before,
+  &::after {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}

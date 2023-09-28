@@ -1,0 +1,5 @@
+@mixin mobile-screen {
+  @media (max-width: var(--mobile-breakpoint)) {
+    @content;
+  }
+}
