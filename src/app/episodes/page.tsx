@@ -61,6 +61,7 @@ export default function EpisodeListPage() {
 
   return (
     <div>
+      <h1>Episodes</h1>
       {loading && <Loading />}
       {!!data && (
         <DataTable data={tableData} onTableDataChange={handleTableDataChange} />

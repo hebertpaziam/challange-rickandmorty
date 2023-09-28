@@ -61,6 +61,7 @@ export default function CharacterListPage() {
 
   return (
     <div>
+      <h1>Characters</h1>
       {loading && <Loading />}
       {!!data && (
         <DataTable data={tableData} onTableDataChange={handleTableDataChange} />

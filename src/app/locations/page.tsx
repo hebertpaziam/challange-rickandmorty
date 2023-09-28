@@ -60,6 +60,7 @@ export default function LocationListPage() {
 
   return (
     <div>
+      <h1>Locations</h1>
       {loading && <Loading />}
       {!!data && (
         <DataTable data={tableData} onTableDataChange={handleTableDataChange} />
