@@ -84,6 +84,10 @@
     .back {
       transform: rotateY(180deg);
       overflow: auto;
+      
+      .-clickable {
+        cursor: pointer;
+      }
     }
   }
 

@@ -5,11 +5,17 @@ import Image from "next/image";
 
 import { ICharacter } from "@/interfaces/character.interface";
 import { Spinner } from "@/components/spinner";
+import { useRouter } from "next/navigation";
 
 export type CardProps = { character: ICharacter; loading: boolean };
 
 export function Card({ character, loading }: CardProps) {
+  const { push } = useRouter();
   const [flipped, setFlipped] = useState(false);
+
+  const handleClickOnEpisodeRow = (episodeId: string) => {
+    push(`/episodes/${episodeId}`);
+  };
 
   return (
     <div className={"card" + (flipped ? " -flipped" : "")}>
@@ -98,7 +104,7 @@ export function Card({ character, loading }: CardProps) {
                 <table>
                   <thead>
                     <tr>
-                      <th> 
+                      <th>
                         <button
                           type="button"
                           className="action"
@@ -117,10 +123,12 @@ export function Card({ character, loading }: CardProps) {
                   <tbody>
                     {character?.episode?.map(
                       ({ episode, name, id, air_date }) => (
-                        <tr key={id}>
-                          <td>
-                            <Link href={`/episodes/${id}`}>{episode}</Link>
-                          </td>
+                        <tr
+                          key={id}
+                          className="-clickable"
+                          onClick={() => handleClickOnEpisodeRow(id)}
+                        >
+                          <td>{episode}</td>
                           <td>{name}</td>
                           <td>{air_date}</td>
                         </tr>

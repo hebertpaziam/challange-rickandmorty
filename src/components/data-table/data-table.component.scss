@@ -11,6 +11,10 @@
     width: auto;
   }
 
+  .-clickable {
+    cursor: pointer;
+  }
+
   .field {
     display: block;
     max-width: 120px;

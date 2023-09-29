@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IList } from "@/interfaces/list.interface";
 import { Pagination } from "@/components/pagination";
 import { Spinner } from "@/components/spinner";
+import { useRouter } from "next/navigation";
 
 export type DataTableProps = {
   data: IList;
@@ -16,6 +17,8 @@ export function DataTable({
   loading,
   onTableDataChange,
 }: DataTableProps) {
+  const { push } = useRouter();
+
   let debouncingTimeout: NodeJS.Timeout;
   const updateFilter = (colKey: string, term: string) => {
     clearTimeout(debouncingTimeout);
@@ -37,6 +40,10 @@ export function DataTable({
 
   const updatePagination = (current: number) => {
     onTableDataChange({ ...data, info: { ...data.info, current } });
+  };
+
+  const handleRowClick = (item: any) => {
+    push(`/${data.entity}/${item?.id}`);
   };
 
   return (
@@ -76,13 +83,9 @@ export function DataTable({
             <>
               {data?.results?.length ? (
                 data.results.map((item) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className="-clickable" onClick={() => handleRowClick(item)}>
                     {data?.columns?.map((col) => (
-                      <td key={col.key}>
-                        <Link href={`${data.entity}/${item.id}`}>
-                          {item[col.key]}
-                        </Link>
-                      </td>
+                      <td key={col.key}>{item[col.key]}</td>
                     ))}
                   </tr>
                 ))

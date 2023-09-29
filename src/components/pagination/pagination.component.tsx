@@ -5,20 +5,20 @@ import React, { useEffect, useState } from "react";
 export type PaginationProps = {
   data: IList;
   loading: boolean;
-  showOnlyNav: boolean;
   onPaginationChange: Function;
+  showOnlyNav?: boolean;
 };
 
 export function Pagination({
   data,
   loading,
-  showOnlyNav,
   onPaginationChange,
+  showOnlyNav,
 }: PaginationProps) {
   const [pageList, setPageList] = useState<number[]>(Array.from({ length: 7 }));
 
   useEffect(() => {
-    if (data?.info?.pages) {
+    if (data?.info?.pages && !showOnlyNav) {
       const totalPages = Array.from(
         { length: data.info.pages },
         (_, i) => i + 1
