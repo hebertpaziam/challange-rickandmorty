@@ -7,7 +7,7 @@
   justify-content: center;
   gap: 1rem;
 
-  .title{
+  .title {
     width: auto;
   }
 
@@ -27,21 +27,25 @@
     }
 
     tbody tr {
+      transition: all 100ms linear;
+
       &:nth-child(odd) {
         background-color: $neutral-color-90;
       }
 
-      &:hover {
+      &:hover:not(.-disabled) {
         background-color: $primary-color-90;
       }
 
-      transition: all 100ms linear;
+      &.-disabled td {
+        text-align: center;
+      }
     }
 
     .field {
       display: block;
       max-width: 120px;
-      padding: 0.25rem 1rem;
+      padding: 0.25rem 0.5rem;
       border: 1px solid $secondary-color-90;
       border-radius: 4px;
 

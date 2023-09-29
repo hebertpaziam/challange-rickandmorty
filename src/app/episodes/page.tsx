@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import { GET_EPISODE_LIST } from "@/queries";
 
 import { DataTable } from "@/components/data-table";
-import { Loading } from "@/components/loading";
 import { IList } from "@/interfaces/list.interface";
 import { useEffect, useState } from "react";
 
@@ -58,14 +57,15 @@ export default function EpisodeListPage() {
     }
   }, [data, tableData, refetch]);
 
-
   return (
     <div>
-      <h1>Episodes</h1>
-      {loading && <Loading />}
-      {!!data && (
-        <DataTable data={tableData} onTableDataChange={handleTableDataChange} />
-      )}
+      <h1 className="title">Episodes</h1>
+
+      <DataTable
+        data={tableData}
+        loading={loading}
+        onTableDataChange={handleTableDataChange}
+      />
     </div>
   );
 }

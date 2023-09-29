@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import { GET_LOCATION_LIST } from "@/queries";
 
 import { DataTable } from "@/components/data-table";
-import { Loading } from "@/components/loading";
 import { IList } from "@/interfaces/list.interface";
 import { useEffect, useState } from "react";
 
@@ -60,11 +59,12 @@ export default function LocationListPage() {
 
   return (
     <div>
-      <h1>Locations</h1>
-      {loading && <Loading />}
-      {!!data && (
-        <DataTable data={tableData} onTableDataChange={handleTableDataChange} />
-      )}
+      <h1 className="title">Locations</h1>
+      <DataTable
+        data={tableData}
+        loading={loading}
+        onTableDataChange={handleTableDataChange}
+      />
     </div>
   );
 }

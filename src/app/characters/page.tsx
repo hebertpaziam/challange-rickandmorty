@@ -4,7 +4,6 @@ import { useQuery } from "@apollo/client";
 import { GET_CHARACTER_LIST } from "@/queries";
 
 import { DataTable } from "@/components/data-table";
-import { Loading } from "@/components/loading";
 import { IList } from "@/interfaces/list.interface";
 
 export default function CharacterListPage() {
@@ -39,10 +38,7 @@ export default function CharacterListPage() {
   };
 
   useEffect(() => {
-    if (
-      data?.characters.results?.length &&
-      data.characters.results !== tableData.results
-    ) {
+    if (data?.characters?.results !== tableData.results) {
       const updatedData = {
         info: {
           ...data.characters?.info,
@@ -61,11 +57,13 @@ export default function CharacterListPage() {
 
   return (
     <div>
-      <h1>Characters</h1>
-      {loading && <Loading />}
-      {!!data && (
-        <DataTable data={tableData} onTableDataChange={handleTableDataChange} />
-      )}
+      <h1 className="title">Characters</h1>
+      
+      <DataTable
+        data={tableData}
+        loading={loading}
+        onTableDataChange={handleTableDataChange}
+      />
     </div>
   );
 }

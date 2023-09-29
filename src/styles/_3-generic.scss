@@ -1,5 +1,12 @@
 @import "~normalize.css";
 
+@font-face {
+  font-family: "GetSchwifty";
+  src: url("/fonts/get_schwifty.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   color: var(--neutral-color-50);
   font-size: 16px;

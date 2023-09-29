@@ -2,13 +2,21 @@ import { IList } from "@/interfaces/list.interface";
 import "./pagination.component.scss";
 import React, { useEffect, useState } from "react";
 
-export type PaginationProps = { data: IList; onPaginationChange: Function };
+export type PaginationProps = {
+  data: IList;
+  loading: boolean;
+  onPaginationChange: Function;
+};
 
-export function Pagination({ data, onPaginationChange }: PaginationProps) {
-  const [pageList, setPageList] = useState<number[]>([]);
+export function Pagination({
+  data,
+  loading,
+  onPaginationChange,
+}: PaginationProps) {
+  const [pageList, setPageList] = useState<number[]>(Array.from({ length: 7 }));
 
   useEffect(() => {
-    if (data.info) {
+    if (data?.info?.pages) {
       const totalPages = Array.from(
         { length: data.info.pages },
         (_, i) => i + 1
@@ -39,7 +47,7 @@ export function Pagination({ data, onPaginationChange }: PaginationProps) {
         <button
           type="button"
           className="navigate"
-          disabled={!data?.info?.prev}
+          disabled={!data?.info?.prev || loading}
           onClick={() => onPaginationChange(1)}
         >
           &lt;&lt;
@@ -49,7 +57,7 @@ export function Pagination({ data, onPaginationChange }: PaginationProps) {
         <button
           type="button"
           className="navigate"
-          disabled={!data?.info?.prev}
+          disabled={!data?.info?.prev || loading}
           onClick={() => onPaginationChange(data.info.prev)}
         >
           &lt;
@@ -60,9 +68,10 @@ export function Pagination({ data, onPaginationChange }: PaginationProps) {
           <button
             className={`navigate ${data.info.current === page && "-active"}`}
             type="button"
+            disabled={loading}
             onClick={() => onPaginationChange(page)}
           >
-            {page}
+            {page || "-"}
           </button>
         </li>
       ))}
@@ -70,7 +79,7 @@ export function Pagination({ data, onPaginationChange }: PaginationProps) {
         <button
           type="button"
           className="navigate"
-          disabled={!data?.info?.next}
+          disabled={!data?.info?.next || loading}
           onClick={() => onPaginationChange(data.info.next)}
         >
           &gt;
@@ -80,7 +89,7 @@ export function Pagination({ data, onPaginationChange }: PaginationProps) {
         <button
           type="button"
           className="navigate"
-          disabled={!data?.info?.next}
+          disabled={!data?.info?.next || loading}
           onClick={() => onPaginationChange(data.info.pages)}
         >
           &gt;&gt;
