@@ -1,8 +1,9 @@
 @import "1-settings", "2-tools", "3-generic", "4-base";
 
 .title {
-  font-size: 3rem;
+  font-size: 4rem;
   color: $primary-color-50;
+  text-align: center;
   text-shadow: 
                 -1px -1px 0px $neutral-color-50,
                 1px 1px 0px $neutral-color-50,
