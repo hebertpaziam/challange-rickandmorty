@@ -1,0 +1,33 @@
+@import "@/styles/1-settings";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  .navigate {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    border: 1px solid $neutral-color-80;
+    background-color: $neutral-color-100;
+    transition: all 100ms linear;
+
+    &.-active {
+      border-color: $secondary-color-50;
+      background-color: $secondary-color-90;
+    }
+
+    &:hover {
+      border-color: $primary-color-50;
+      background-color: $primary-color-90;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border-color: $neutral-color-80;
+      background-color: $neutral-color-90;
+    }
+  }
+}
