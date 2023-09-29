@@ -1,5 +1,4 @@
 import "./spinner.component.scss";
-import React from "react";
 
 export type SpinnerProps = {};
 

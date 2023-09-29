@@ -5,7 +5,7 @@ export interface ILocation {
   name: string;
   type: string;
   dimension: string;
-  residents: Array<
+  residents?: Array<
     Pick<ICharacter, "id" | "name" | "species" | "gender" | "status">
   >;
   created: string;

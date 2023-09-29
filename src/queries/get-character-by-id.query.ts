@@ -9,25 +9,24 @@ const GET_CHARACTER_BY_ID = gql`
       species
       type
       gender
+      image
       location {
+        id
         name
         type
         dimension
       }
       origin {
+        id
         name
         type
         dimension
-        residents {
-          id
-          name
-        }
       }
       episode {
         id
         name
-        air_date
         episode
+        air_date
       }
     }
   }

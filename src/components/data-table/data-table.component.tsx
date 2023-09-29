@@ -67,7 +67,7 @@ export function DataTable({
 
         <tbody>
           {loading ? (
-            <tr className={`${!!loading && "-disabled"}`}>
+            <tr className={`${!!loading ? "-disabled" : ""}`}>
               <td colSpan={data?.columns?.length}>
                 <Spinner />
               </td>

@@ -61,6 +61,37 @@ fieldset {
   padding: 0;
 }
 
-ul, ol{
+ul,
+ol {
   list-style: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid $neutral-color-60;
+  border-radius: 4px;
+
+  th,
+  td {
+    text-align: left;
+    padding: 1rem 0.5rem;
+  }
+
+  tbody tr {
+    transition: all 100ms linear;
+
+    &:nth-child(odd) {
+      background-color: $neutral-color-90;
+    }
+
+    &:hover:not(.-disabled) {
+      background-color: $primary-color-100;
+    }
+
+    &.-disabled td {
+      text-align: center;
+    }
+  }
 }

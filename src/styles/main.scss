@@ -4,13 +4,20 @@
   font-size: 4rem;
   color: $primary-color-50;
   text-align: center;
-  text-shadow: 
-                -1px -1px 0px $neutral-color-50,
-                1px 1px 0px $neutral-color-50,
-                -2px -2px 2px $secondary-color-90,
-                2px 2px 2px $secondary-color-50,
-                -3px -3px 3px $secondary-color-90,
-                3px 3px 3px $secondary-color-50,
-                ;
   font-family: "GetSchwifty";
+  text-shadow: 
+              -1px -1px 0px $neutral-color-50,
+              1px 1px 0px $neutral-color-50,
+              -2px -2px 2px $secondary-color-90,
+              2px 2px 2px $secondary-color-50,
+              -3px -3px 3px $secondary-color-90,
+              3px 3px 3px $secondary-color-50;
+  
+}
+
+.details-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
